@@ -1,18 +1,63 @@
-@model TModel
+@model Game
 
 @{
-    Layout = null;
+    Layout = "_Layout";
+    var dane = new List<Question>()
+    {
+        new Question()
+        {
+            QuestionStatus = QuestionStatus.Answered,
+            Reward = 100
+        },
+        new Question()
+        {
+            QuestionStatus = QuestionStatus.Unanswered,
+            Reward = 200
+        },
+        new Question()
+        {
+            QuestionStatus = QuestionStatus.DuringAnswer,
+            Reward = 500,
+            IsMilestone = true
+        },
+        new Question()
+        {
+            QuestionStatus = QuestionStatus.DuringAnswer,
+            Reward = 1000,
+            IsMilestone = false
+        }
+    };
 }
 
-<!DOCTYPE html>
+@{
+    ViewData["Title"] = "Game";
+}
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<div class="game-info-container">
+    @* <button type="button" class="exit-btn" onclick="location.href='@Url.Action("EndGame", "Game")'" >End the Game </button> *@
+    @{ await Html.RenderPartialAsync("ActionButton", new ActionButton() { ButtonType = ButtonType.GoNextQuestion});}
+    @{await Html.RenderPartialAsync("QuestionList", dane); }
 </div>
-</body>
-</html>
+<div class="question-container">
+    @Model.Question
+</div>
+<div class="answer-container">
+    <div class="answer clickable wrong-answer" id="answer-a">
+        <div class="question-letter">A) </div>
+        @Model.AnsewrA
+        </div>
+    <div class="answer clickable correct-answer" id="answer-b">
+        <div class="question-letter">B) </div>
+            @Model.AnsewrB
+        </div>
+    <div class="answer clickable" id="answer-c">
+    <div class="question-letter">C) </div>
+            @Model.AnsewrC
+    </div>
+    <div class="answer " id="answer-d">
+    <div class="question-letter">D) </div>
+            @Model.AnsewrD
+        </div>
+</div>
+
+

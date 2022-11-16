@@ -1,0 +1,21 @@
+@model ActionButton
+
+@switch (Model.ButtonType)
+{
+    case ButtonType.GoToWinScreen:
+        <button class="action-button" style="background-color: #f6e41b"><i class="fa-solid fa-trophy-star"></i>Get your trophy @Model.CustomText</button>
+        break;
+    case ButtonType.GoNextQuestion:
+        <button class="action-button" style="background-color: #50cc00"><i class="fa-solid fa-right"></i>Next question @Model.CustomText</button>
+        break;
+    case ButtonType.GoToFailureScreen:
+        <button class="action-button" style="background-color: #e51111"><i class="fa-solid fa-trophy"></i>Get your price @Model.CustomText</button>
+        break;
+    case ButtonType.Surrender:
+        <button class="action-button" style="background-color: #ef1313"><i class="fa-solid fa-font-awesome"></i>Give up @Model.CustomText</button>
+        break;
+    default:
+        <button class="action-button" style="background-color: #fdc674"> Button</button>
+        break;
+
+}

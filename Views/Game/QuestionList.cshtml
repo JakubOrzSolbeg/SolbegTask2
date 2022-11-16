@@ -1,0 +1,21 @@
+@model IEnumerable<Question>
+
+<div class="question-info-container">
+    @foreach (var question in Model)
+    {
+        string extraclass = (question.IsMilestone) ? "milestone" : "";
+        Console.WriteLine(extraclass);
+        @switch (question.QuestionStatus)
+        {
+            case QuestionStatus.Answered:
+                <div class="question-info question-answered "> @question.Reward </div>
+                break;
+            case QuestionStatus.DuringAnswer:
+                <div class="question-info question-during-answering @extraclass"> @question.Reward </div>
+                break;
+            default:
+                <div class="question-info question-unanswered @extraclass"> @question.Reward </div>
+                break;
+        }
+    }
+</div>
