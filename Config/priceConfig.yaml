@@ -1,0 +1,21 @@
+prices:
+  - price: 1
+    milestone: false
+  - price: 10
+    milestone: false
+  - price: 69
+    milestone: false
+  - price: 420
+    milestone: true
+  - price: 1234
+    milestone: false
+  - price: 2137
+    milestone: false
+  - price: 4444
+    milestone: true
+  - price: 10001
+    milestone: false
+  - price: 20000
+    milestone: false
+  - price: 50000
+    milestone: false

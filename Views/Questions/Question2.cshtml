@@ -1,0 +1,33 @@
+@model NewQuestion
+
+@{
+    ViewBag.Title = "Adding question";
+    Layout = "_Layout";
+}
+
+<div class="question-form">
+    @using (Html.BeginForm("Index", "Questions", FormMethod.Post))
+    {
+        <h2>Add new question</h2>
+        <label for="question-text">Question</label>
+        @Html.TextAreaFor(model => model.QuestionText, new {required="", id="question-text", placeholder="Your guestion"})
+        
+        <label for="answerA">Correct Answer</label>
+        <input id="answerA" name="CorrectAnswer" type="text" placeholder="Correct answer" required autocomplete="off"/>
+        
+        <label for="answerB">Wrong answer 1</label>
+        <input id="answerB" name="WrongAnswer1" type="text" placeholder="Wrong answer" required autocomplete="off"/>
+        
+        <label for="answerC">Wrong answer 2</label>
+        <input id="answerC" name="WrongAnswer2" type="text" placeholder="Wrong answer" required autocomplete="off"/>
+        
+        <label for="answerD">Wrong answer 3</label>
+        <input id="answerD" name="WrongAnswer3" type="text" placeholder="=Wrong answer" required autocomplete="off"/>
+
+        <div class="submit-buttons">
+            <input class="btn-green" type="submit" value="Sumbit question">
+            <button class="btn-red" onclick="location.href='@Url.Action("Index", "Home")'">Return to MainMenu</button>
+        </div>
+        <span>@Model.ReturnMessage</span>
+    }
+</div>

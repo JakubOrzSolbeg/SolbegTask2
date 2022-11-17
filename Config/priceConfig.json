@@ -1,0 +1,46 @@
+[
+    {
+      "price": 1,
+      "milestone": false
+    },
+    {
+      "price": 10,
+      "milestone": false
+    },
+    {
+      "price": 69,
+      "milestone": false
+    },
+    {
+      "price": 420,
+      "milestone": true
+    },
+    {
+      "price": 667,
+      "milestone": false
+    },
+    {
+      "price": 997,
+      "milestone": false
+    },
+    {
+      "price": 1234,
+      "milestone": false
+    },
+    {
+      "price": 2137,
+      "milestone": true
+    },
+    {
+      "price": 4444,
+      "milestone": false
+    },
+    {
+      "price": 6969,
+      "milestone": false
+    },
+    {
+      "price": 9999,
+      "milestone": true
+    }
+]

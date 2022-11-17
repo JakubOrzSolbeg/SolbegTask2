@@ -1,62 +1,33 @@
 @model Game
 
 @{
-    Layout = "_Layout";
-    var dane = new List<Question>()
-    {
-        new Question()
-        {
-            QuestionStatus = QuestionStatus.Answered,
-            Reward = 100
-        },
-        new Question()
-        {
-            QuestionStatus = QuestionStatus.Unanswered,
-            Reward = 200
-        },
-        new Question()
-        {
-            QuestionStatus = QuestionStatus.DuringAnswer,
-            Reward = 500,
-            IsMilestone = true
-        },
-        new Question()
-        {
-            QuestionStatus = QuestionStatus.DuringAnswer,
-            Reward = 1000,
-            IsMilestone = false
-        }
-    };
-}
-
-@{
     ViewData["Title"] = "Game";
 }
 
 <div class="game-info-container">
     @* <button type="button" class="exit-btn" onclick="location.href='@Url.Action("EndGame", "Game")'" >End the Game </button> *@
-    @{ await Html.RenderPartialAsync("ActionButton", new ActionButton() { ButtonType = ButtonType.GoNextQuestion});}
-    @{await Html.RenderPartialAsync("QuestionList", dane); }
+    @{ await Html.RenderPartialAsync("ActionButton", Model.AwaibleAction);}
+    @{await Html.RenderPartialAsync("QuestionList", Model.QuestionInfo); }
 </div>
 <div class="question-container">
-    @Model.Question
+    @Model.Question.QuestionText
 </div>
 <div class="answer-container">
-    <div class="answer clickable wrong-answer" id="answer-a">
+    <div class="answer clickable" id="answer-a">
         <div class="question-letter">A) </div>
-        @Model.AnsewrA
+        @Model.Question.AnswerA
         </div>
-    <div class="answer clickable correct-answer" id="answer-b">
+    <div class="answer clickable" id="answer-b">
         <div class="question-letter">B) </div>
-            @Model.AnsewrB
+            @Model.Question.AnswerB
         </div>
     <div class="answer clickable" id="answer-c">
     <div class="question-letter">C) </div>
-            @Model.AnsewrC
+            @Model.Question.AnswerC
     </div>
-    <div class="answer " id="answer-d">
+    <div class="answer clickable" id="answer-d">
     <div class="question-letter">D) </div>
-            @Model.AnsewrD
+            @Model.Question.AnswerD
         </div>
 </div>
 

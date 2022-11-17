@@ -1,0 +1,39 @@
+@* @model Question *@
+@* *@
+@* @{ *@
+@*     ViewBag.Title = "Adding question"; *@
+@*     Layout = "_Layout"; *@
+@* } *@
+@* *@
+@* <div class="question-form"> *@
+@*     @using (Html.BeginForm("Index", "Questions", FormMethod.Post)) *@
+@*     { *@
+@*         <h2>Add new question</h2> *@
+@*         <label for="questiontext">Question</label> *@
+@*         @Html.TextAreaFor(model => model.QuestionText, new {required="", id="questiontext", placeholder="Your guestion"}) *@
+@*         <label for="answerA">Answer A</label> *@
+@*         <div> *@
+@*             <input id="answerA" name="AnswerA" type="text" placeholder="Answer A" required, autocomplete="off"/> *@
+@*             @Html.RadioButtonFor(model => model.CorrectAnswer, "a", new {value="a", id="ccA", @checked=""}) *@
+@*         </div> *@
+@*         <label for="answerB">Answer B</label> *@
+@*         <div> *@
+@*             <input id="answerB" name="AnswerB" type="text" placeholder="Answer B" required, autocomplete="off"/> *@
+@*             @Html.RadioButtonFor(model => model.CorrectAnswer, "b",new {value="b", id="ccB"}) *@
+@*         </div> *@
+@*         <label for="answerC">Answer C</label> *@
+@*         <div> *@
+@*             <input id="answerC" name="AnswerC" type="text" placeholder="Answer C" required, autocomplete="off"/> *@
+@*             @Html.RadioButtonFor(model => model.CorrectAnswer, "c",new {value="c", id="ccC"}) *@
+@*         </div> *@
+@*         <label for="answerD">Answer D</label> *@
+@*         <div> *@
+@*             <input id="answerD" name="AnswerD" type="text" placeholder="=Answer D" required, autocomplete="off"/> *@
+@*             @Html.RadioButtonFor(model => model.CorrectAnswer, "d",new {value="d", id="ccD"}) *@
+@*         </div> *@
+@*         <div class="submit-buttons"> *@
+@*             <input class="btn-green" type="submit" value="Sumbit question"> *@
+@*             <button class="btn-red" onclick="location.href='@Url.Action("Index", "Home")'">Return to MainMenu</button> *@
+@*         </div> *@
+@*     } *@
+@* </div> *@

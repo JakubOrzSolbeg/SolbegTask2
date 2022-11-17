@@ -1,28 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using SolbegTask2.Models;
+using SolbegTask2.Services.Interfaces;
 
 namespace SolbegTask2.Controllers;
 
 public class GameController : Controller
 {
-    // GET
-    public IActionResult Index()
+    private readonly IMainGameService _mainGameService;
+    public GameController(IMainGameService mainGameService)
     {
-        var modelResult = new Game()
-        {
-            Question = "Do you want to be a big shot?",
-            AnsewrA = "Not realy",
-            AnsewrB = "Kromer",
-            AnsewrC = "Hyperlink Blocked iansdinsdi asdiandlasd asdlinasioda sl diasndas dlasd",
-            AnsewrD = "That is [redacted]",
-            AwaibleAction = new ActionButton()
-            {
-                ButtonType = ButtonType.Surrender,
-            },
-        };
-        return View(model: modelResult);
+        _mainGameService = mainGameService;
     }
-
+    // GET
+    public async Task<IActionResult> Index()
+    {
+        var resultModel = await _mainGameService.UpdateGameStatus(new Game());
+        return View("Index", model: resultModel);
+    }
+    
     public IActionResult StartGame()
     {
         //Set cookie 

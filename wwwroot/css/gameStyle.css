@@ -39,7 +39,7 @@ h1 {
 
 .question-info-container{
     display: flex;
-    padding: 10px;
+    padding: 2px;
     -ms-flex-align: baseline;
     flex-direction: column-reverse;
     position: absolute;
@@ -98,12 +98,12 @@ h1 {
     font-weight: bolder;
 }
 
-.answer.correct-answer {
+.answer.correct-answer, .btn-green {
     background: linear-gradient(0deg, rgba(37, 158, 3, 1) 0%, rgba(23, 237, 30, 1) 50%, rgba(37, 158, 3, 1) 100%);
 }
 
 
-.answer.wrong-answer{
+.answer.wrong-answer, .btn-red{
     background: linear-gradient(0deg, rgba(158,18,3,1) 0%, rgba(227,46,18,1) 50%, rgba(158,18,3,1) 100%);
 }
 
@@ -133,10 +133,10 @@ h1 {
 }
 
 .question-info{
-    margin: 6px;
+    margin: 2px;
     text-align: center;
     font-weight: bolder;
-    font-size: 1.5em;
+    font-size: 1.4em;
 } 
 
 .question-info.milestone{
@@ -155,4 +155,34 @@ h1 {
 
 .question-unanswered{
     color: #403d37;
+}
+
+.question-form{
+    position: relative;
+    top: 30%;
+}
+
+.question-form > form{
+    position: relative;
+    /*justify-content: center;*/
+    border-radius: 50px;
+    top: 150px;
+    left: 20%;
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #e7e7e7;
+    /*justify-content: stretch;*/
+}
+
+.question-form > form > input{
+    width: 90%;
+}
+
+.submit-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
 }

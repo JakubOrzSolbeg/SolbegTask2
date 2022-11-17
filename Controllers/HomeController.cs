@@ -16,7 +16,6 @@ public class HomeController : Controller
         return View();
     }
     
-
     public IActionResult EndGame()
     {
         HttpContext.Response.Cookies.Delete("gameguid");
