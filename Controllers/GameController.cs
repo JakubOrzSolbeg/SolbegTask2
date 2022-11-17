@@ -11,20 +11,58 @@ public class GameController : Controller
     {
         _mainGameService = mainGameService;
     }
-    // GET
-    public async Task<IActionResult> Index()
+
+    private string GetGameCookie()
     {
-        var resultModel = await _mainGameService.UpdateGameStatus(new Game());
-        return View("Index", model: resultModel);
+        string? gameCookie;
+        if (!HttpContext.Request.Cookies.ContainsKey("gameguid"))
+        {
+            gameCookie = Guid.NewGuid().ToString();
+            HttpContext.Response.Cookies.Append("gameguid", gameCookie);
+        }
+
+        gameCookie = HttpContext.Request.Cookies["gameguid"];
+        if (gameCookie == null)
+        {
+            gameCookie = Guid.NewGuid().ToString();
+            HttpContext.Response.Cookies.Append("gameguid", gameCookie);
+            return gameCookie;
+        }
+        else
+        {
+            return gameCookie;
+        }
     }
     
-    public IActionResult StartGame()
+    [HttpGet]
+    public async Task<IActionResult> Index()
     {
-        //Set cookie 
-        return RedirectToAction("Index", "Game");
+        string gameCookie = GetGameCookie();
+        var resultModel = await _mainGameService.GetCurrentGameStatus(gameCookie);
+        return View("Index", model: resultModel);
     }
 
-    public IActionResult EndGame()
+    [HttpPost]
+    public async Task<IActionResult> Index(string answer)
+    {
+        string gameCookie = GetGameCookie();
+        
+        var resultModel = await _mainGameService.UpdateGameStatus(gameCookie, int.Parse(answer));
+        return View("Index", model: resultModel);
+    }
+
+    [HttpGet]
+    public IActionResult Results()
+    {
+        string gameCookie = GetGameCookie();
+        var resultModel = _mainGameService.GetGameResult(gameCookie);
+        HttpContext.Response.Cookies.Delete("gameguid");
+        return View("Results", model: resultModel);
+    }
+    
+    
+    [HttpGet]
+    public IActionResult Result()
     {
         return RedirectToAction("Index", "Home");
     }

@@ -4,31 +4,31 @@
 {
     case ButtonType.GoToWinScreen:
         <button class="action-button" style="background-color: #f6e41b"
-                onclick="location.href='@Url.Action("Index", "Home")'">
+                onclick="location.href='@Url.Action("Results", "Game")'">
             <i class="fa-solid fa-trophy-star"></i>Get your trophy @Model.CustomText
         </button>
         break;
     case ButtonType.GoNextQuestion:
         <button class="action-button" style="background-color: #50cc00"
-                onclick="location.href='@Url.Action("Index", "Home")'">
+                onclick="location.href='@Url.Action("Index", "Game")'">
             <i class="fa-solid fa-right"></i>Next question @Model.CustomText
         </button>
         break;
     case ButtonType.GoToFailureScreen:
         <button class="action-button" style="background-color: #e51111"
-                onclick="location.href='@Url.Action("Index", "Home")'">
+                onclick="location.href='@Url.Action("Results", "Game")'">
             <i class="fa-solid fa-trophy"></i>Get your price @Model.CustomText
         </button>
         break;
     case ButtonType.Surrender:
         <button class="action-button" style="background-color: #ef1313"
-                onclick="location.href='@Url.Action("Index", "Home")'">
+                onclick="location.href='@Url.Action("Results", "Game")'">
             <i class="fa-solid fa-font-awesome"></i>Give up @Model.CustomText
         </button>
         break;
     default:
         <button class="action-button" style="background-color: #fdc674"
-                onclick="location.href='@Url.Action("Index", "Home")'">
+                onclick="location.href='@Url.Action("Results", "Game")'">
             Button
         </button>
         break;

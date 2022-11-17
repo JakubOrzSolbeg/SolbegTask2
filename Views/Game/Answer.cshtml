@@ -1,0 +1,23 @@
+@model SolbegTask2.Models.Dto.AnswerDto
+
+@if (Model.Clickable)
+
+{
+    @using (Html.BeginForm("Index", "Game", FormMethod.Post))
+    {
+        <button class="answer clickable" id="answer-@ViewData["questionId"]" type="submit" name="answer" value="@ViewData["questionNumber"]"
+                onclick="location.href='@Url.Action("Index", "Game")'">
+            <div class="question-letter">@ViewData["questionId"]) </div>@Model.Text
+        </button>
+    }
+}
+else
+{
+    <div class="answer
+         @(Model.IsWrong ? "wrong-answer" : "")
+         @(Model.IsCorrect ? "correct-answer" : "")"
+         id="answer-@ViewData["questionId"]">
+        <div class="question-letter">@ViewData["questionId"]) </div>
+        @Model.Text
+    </div>
+}

@@ -2,13 +2,11 @@
     ViewData["Title"] = "Main Menu";
 }
 
-<div class="text-center">
-    @* <img class="main-background" src="img/Main_manu_background.png" alt="Main menu backgroud"/> *@
-</div>
-<div class="text-center">
-    <button type="button" onclick="location.href='@Url.Action("StartGame", "Game")'" >
+<div class="centered-content">
+    <h2>who wants to be KROMERonaire</h2>
+    <button class="nav-button" type="button" onclick="location.href='@Url.Action("Index", "Game")'">
         Start the Game </button>
-    <button type="button" onclick="location.href='@Url.Action("Index", "Questions")'" >
-    Add new guestion</button>
+    <button class="nav-button" type="button" onclick="location.href='@Url.Action("Index", "Questions")'">
+        Add new guestion</button>
 </div>
     

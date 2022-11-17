@@ -14,11 +14,9 @@ public class StaticConfigService : IStaticConfigService
         {
             string json = r.ReadToEnd();
             var parsedConfig = JsonSerializer.Deserialize<List<QuestionReward>>(json);
-            Console.WriteLine("Parsowanie plików z jsona");
-            
-            parsedConfig?.ForEach(e => Console.WriteLine($"Question {e.Price} {e.Milestone}"));
-            
-            Console.WriteLine(parsedConfig);
+            // Console.WriteLine("Parsowanie plików z jsona");
+            // parsedConfig?.ForEach(e => Console.WriteLine($"Question {e.Price} {e.Milestone}"));
+            // Console.WriteLine(parsedConfig);
             if (parsedConfig == null)
             {
                 throw new ArgumentNullException();

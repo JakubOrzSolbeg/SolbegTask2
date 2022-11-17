@@ -8,20 +8,15 @@ public class HomeController : Controller
 {
     public IActionResult Index()
     {
-        if (!HttpContext.Request.Cookies.ContainsKey("gameguid"))
+        if (HttpContext.Request.Cookies.ContainsKey("gameguid"))
         {
-            var newcookie = Guid.NewGuid();
-            HttpContext.Response.Cookies.Append("gameguid", newcookie.ToString());
+            //Started game == redirect to game controller
+            return RedirectToAction("Index", "Game");
         }
+        
         return View();
     }
-    
-    public IActionResult EndGame()
-    {
-        HttpContext.Response.Cookies.Delete("gameguid");
-        return View("Index");
-    }
-    
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SolbegTask2.DbContexts;
+using SolbegTask2.Migrations;
 using SolbegTask2.Models;
 using SolbegTask2.Services.Interfaces;
 
@@ -47,9 +48,21 @@ public class QuestionService : IQuestionService
         return question.CorrectAnswerHash.Equals(answerHash);
     }
 
+    public async Task<string> GetCorrectAnswer(int questionId)
+    {
+        var result = await _dbContext.Questions
+            .Where(q => q.QuestionId == questionId)
+            .Select(q => q.AnswerA)
+            .FirstOrDefaultAsync();
+        return result ?? "";
+    }
+
     public async Task<Question> GetRandomQuestion()
     {
         var randomQuestion = await _dbContext.Questions.OrderBy(x => Guid.NewGuid()).Take(1).FirstAsync();
+        
+        Console.WriteLine($"Picking random question {randomQuestion.QuestionText} {randomQuestion.CorrectAnswerHash}");
+        
         return randomQuestion;
     }
 

@@ -1,3 +1,4 @@
+@using SolbegTask2.Models.Enums
 @model Game
 
 @{
@@ -13,22 +14,10 @@
     @Model.Question.QuestionText
 </div>
 <div class="answer-container">
-    <div class="answer clickable" id="answer-a">
-        <div class="question-letter">A) </div>
-        @Model.Question.AnswerA
-        </div>
-    <div class="answer clickable" id="answer-b">
-        <div class="question-letter">B) </div>
-            @Model.Question.AnswerB
-        </div>
-    <div class="answer clickable" id="answer-c">
-    <div class="question-letter">C) </div>
-            @Model.Question.AnswerC
-    </div>
-    <div class="answer clickable" id="answer-d">
-    <div class="question-letter">D) </div>
-            @Model.Question.AnswerD
-        </div>
+    @{await Html.RenderPartialAsync("Answer", Model.Question.AnswerA, new ViewDataDictionary(this.ViewData) { { "questionId", "A" }, {"questionNumber", 0}});}
+    @{await Html.RenderPartialAsync("Answer", Model.Question.AnswerB, new ViewDataDictionary(this.ViewData) { { "questionId", "B" }, {"questionNumber", 1}});}
+    @{await Html.RenderPartialAsync("Answer", Model.Question.AnswerC, new ViewDataDictionary(this.ViewData) { { "questionId", "C" }, {"questionNumber", 2}});}
+    @{await Html.RenderPartialAsync("Answer", Model.Question.AnswerD, new ViewDataDictionary(this.ViewData) { { "questionId", "D" }, {"questionNumber", 3}});}
 </div>
 
 
