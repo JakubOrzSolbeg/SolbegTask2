@@ -118,10 +118,10 @@ public class MainGameService1 : IMainGameService
     {
         var randomQuestion = await _questionService.GetRandomQuestion();
         
-        var correctAnswer = randomQuestion.AnswerA;
+        var correctAnswer = randomQuestion.CorrectAnswer;
         
         //Shuffle answer order
-        var answerList = new List<string>(){ randomQuestion.AnswerA, randomQuestion.AnswerB, randomQuestion.AnswerC, randomQuestion.AnswerD };
+        var answerList = new List<string>(){ randomQuestion.CorrectAnswer, randomQuestion.WrongAnswerB, randomQuestion.WrongAnswerC, randomQuestion.WrongAnswerD };
         var rng = new Random();
         var shuffledAnswers = answerList.OrderBy(a => rng.Next()).ToList();
 
@@ -232,11 +232,11 @@ public class MainGameService1 : IMainGameService
             else
             {
                 int i = questionsAnswered;
-                while (i > 0 && !scoreBoard[i].Milestone)
+                while (i >= 0 && !scoreBoard[i].Milestone)
                 {
                     i--;
                 }
-                resultModel.PriceWon = scoreBoard[i].Price;
+                resultModel.PriceWon = (i < 0)? 0 : scoreBoard[i].Price;
             }
         }
         switch (gameStatus)
@@ -245,7 +245,7 @@ public class MainGameService1 : IMainGameService
                 resultModel.Message = "You gave up like noob, here is your reward";
                 break;
             case GameStatus.AnsweredWrong:
-                resultModel.Message = "You made a mistake, your price is the last checkpoint";
+                resultModel.Message = "You made a mistake, you got";
                 break;
             case GameStatus.WonGame:
                 resultModel.Message = "Nice you won";
@@ -254,7 +254,7 @@ public class MainGameService1 : IMainGameService
                 resultModel.Message = "You expected prize fine, here you got";
                 break;
         }
-
+        _memoryService.EndGame(gameId);
         return resultModel;
     }
 }

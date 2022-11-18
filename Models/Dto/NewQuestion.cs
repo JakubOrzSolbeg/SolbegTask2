@@ -1,4 +1,4 @@
-namespace SolbegTask2.Models;
+namespace SolbegTask2.Models.Dto;
 
 public class NewQuestion
 {

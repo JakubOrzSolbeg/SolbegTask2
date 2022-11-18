@@ -39,6 +39,7 @@ h1 {
 
 .question-info-container{
     display: flex;
+    overflow: scroll;
     padding: 2px;
     -ms-flex-align: baseline;
     flex-direction: column-reverse;
@@ -192,6 +193,12 @@ h1 {
     align-items: center;
     padding: 20px;
     color: #fefefe;
+}
+
+.result-info {
+    color: #d366ff;
+    font-weight: bolder;
+    font-size: 4rem;
 }
 
 .nav-button{

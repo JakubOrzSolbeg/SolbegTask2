@@ -86,4 +86,12 @@ public class MemoryService : IMemoryService
         _gameStatuses[gameId] = gameStatus;
         return true;
     }
+
+    public void EndGame(string gameId)
+    {
+        _gameStatuses.Remove(gameId);
+        _gamesCurrentQuestion.Remove(gameId);
+        _gamesCurrentQuestionNumber.Remove(gameId);
+        _correctAnswers.Remove(gameId);
+    }
 }

@@ -1,4 +1,5 @@
 using SolbegTask2.Models;
+using SolbegTask2.Models.Dto;
 
 namespace SolbegTask2.Services.Interfaces;
 

@@ -17,4 +17,5 @@ public interface IMemoryService
 
     public GameStatus GetGameStatus(string gameId);
     public bool UpdateGameStatus(string gameId, GameStatus gameStatus = GameStatus.AnsweringQuestion);
+    public void EndGame(string gameId);
 }

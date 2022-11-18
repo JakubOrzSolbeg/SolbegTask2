@@ -9,10 +9,10 @@ public class Question
     [JsonIgnore]
     public DateTime TimeAdded { get; set; }
     public string QuestionText { get; set; } = "";
-    public string AnswerA { get; set; } = "";
-    public string AnswerB { get; set; } = "";
-    public string AnswerC { get; set; } = "";
-    public string AnswerD { get; set; } = "";
+    public string CorrectAnswer { get; set; } = "";
+    public string WrongAnswerB { get; set; } = "";
+    public string WrongAnswerC { get; set; } = "";
+    public string WrongAnswerD { get; set; } = "";
     [JsonIgnore]
     public int CorrectAnswerHash { get; set; } = -1;
 }

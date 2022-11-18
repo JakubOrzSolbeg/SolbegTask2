@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SolbegTask2.DbContexts;
 using SolbegTask2.Migrations;
 using SolbegTask2.Models;
+using SolbegTask2.Models.Dto;
 using SolbegTask2.Services.Interfaces;
 
 namespace SolbegTask2.Services;
@@ -20,10 +21,10 @@ public class QuestionService : IQuestionService
         Question questionToBeAdded = new Question()
         {
             QuestionText = newQuestion.QuestionText,
-            AnswerA = newQuestion.CorrectAnswer,
-            AnswerB = newQuestion.WrongAnswer1,
-            AnswerC = newQuestion.WrongAnswer2,
-            AnswerD = newQuestion.WrongAnswer3,
+            CorrectAnswer = newQuestion.CorrectAnswer,
+            WrongAnswerB = newQuestion.WrongAnswer1,
+            WrongAnswerC = newQuestion.WrongAnswer2,
+            WrongAnswerD = newQuestion.WrongAnswer3,
             CorrectAnswerHash = newQuestion.CorrectAnswer.GetHashCode()
         };
         await _dbContext.Questions.AddAsync(questionToBeAdded);
@@ -33,7 +34,7 @@ public class QuestionService : IQuestionService
 
     public async Task<List<Question>> GetAllQuestions()
     {
-        throw new NotImplementedException();
+        return await _dbContext.Questions.ToListAsync();
     }
 
     public async Task<bool> VerifyAnswer(int questionId, string answer)
@@ -52,7 +53,7 @@ public class QuestionService : IQuestionService
     {
         var result = await _dbContext.Questions
             .Where(q => q.QuestionId == questionId)
-            .Select(q => q.AnswerA)
+            .Select(q => q.CorrectAnswer)
             .FirstOrDefaultAsync();
         return result ?? "";
     }
@@ -60,9 +61,6 @@ public class QuestionService : IQuestionService
     public async Task<Question> GetRandomQuestion()
     {
         var randomQuestion = await _dbContext.Questions.OrderBy(x => Guid.NewGuid()).Take(1).FirstAsync();
-        
-        Console.WriteLine($"Picking random question {randomQuestion.QuestionText} {randomQuestion.CorrectAnswerHash}");
-        
         return randomQuestion;
     }
 

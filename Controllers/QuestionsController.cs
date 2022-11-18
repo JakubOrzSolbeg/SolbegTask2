@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SolbegTask2.Models;
+using SolbegTask2.Models.Dto;
 using SolbegTask2.Services.Interfaces;
 
 namespace SolbegTask2.Controllers;
